@@ -44,10 +44,10 @@ public class CheckIn extends Evento {
 
 		System.out.println("\nAcomodação " + acomodacao.getNumero() + " disponível para o animal.");
 
-		if (acomodacao != null) {
+		//if (acomodacao != null) {
 			cadastraAnimal();
 			System.out.println("\nAnimal Cadastrado com sucesso.");
-		}
+		//}
 	}
 
 	public Estadia cadastraEstadia(Animal animal, Acomodacao acomodacao)
@@ -86,7 +86,7 @@ public class CheckIn extends Evento {
 			Set<Acomodacao> acomodacoes = getBd().getInstance().getAcomodacoes();
 			for (Acomodacao acomodacao : acomodacoes) {
 				if (acomodacao.getDimensao() == porte
-						&& acomodacao.getEstado() == EstadoAcomodacao.DESOCUPADO
+						&& acomodacao.getEstado() == EstadoAcomodacao.DESOCUPADA
 						&& acomodacao.getEspecie() == animal.getEspecie()) {
 					return acomodacao;
 				}

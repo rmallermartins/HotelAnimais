@@ -9,6 +9,7 @@ public class BancoDeDados {
     private Set<Animal> animais; 
     private Set<Diaria> diarias; 
     private Set<Pessoa> pessoas; 
+    private Set<Porte> portes;
     private Set<Especie> especies; 
     private Set<Estadia> estadias; 
     private Set<PorteFaixa> porteFaixas; 
@@ -18,28 +19,29 @@ public class BancoDeDados {
     public BancoDeDados() { 
     	
         acomodacoes = new HashSet<Acomodacao>(); 
-        acomodacoes.add(new Acomodacao(1, Especie.CACHORRO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(2, Especie.CACHORRO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(3, Especie.CACHORRO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(4, Especie.GATO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(5, Especie.GATO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(6, Especie.GATO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(7, Especie.PASSARO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(8, Especie.PASSARO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(9, Especie.PASSARO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
-        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(1, Especie.CACHORRO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(2, Especie.CACHORRO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(3, Especie.CACHORRO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(4, Especie.GATO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(5, Especie.GATO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(6, Especie.GATO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(7, Especie.PASSARO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(8, Especie.PASSARO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(9, Especie.PASSARO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(11, Especie.PEIXE, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(12, Especie.PEIXE, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(13, Especie.REPTIL, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(14, Especie.REPTIL, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(15, Especie.REPTIL, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(16, Especie.ROEDOR, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(17, Especie.ROEDOR, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(18, Especie.ROEDOR, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
         
         animais = new HashSet<Animal>(); 
         diarias = new HashSet<Diaria>(); 
         pessoas = new HashSet<Pessoa>(); 
+        portes = new HashSet<Porte>();
         especies = new HashSet<Especie>(); 
         estadias = new HashSet<Estadia>(); 
         
@@ -78,6 +80,8 @@ public void cadastrar(Object entidade) {
 		diarias.add((Diaria) entidade);
 	} else if (entidade instanceof Pessoa) {
 		pessoas.add((Pessoa) entidade);
+	} else if (entidade instanceof Porte) {
+		portes.add((Porte) entidade);
 	} else if (entidade instanceof Especie) {
 		especies.add((Especie) entidade);
 	} else if (entidade instanceof Estadia) {
@@ -105,6 +109,9 @@ public void cadastrar(Object entidade) {
  public Set<Pessoa> getPessoas() { 
   return pessoas; 
 } 
+ public Set<Porte> getPortes(){
+	 return portes;
+ }
  public Set<Especie> getEspecies() { 
   return especies; 
 } 
