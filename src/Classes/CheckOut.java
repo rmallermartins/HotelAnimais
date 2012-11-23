@@ -14,13 +14,11 @@ import Controle.ControladorCadastro;
 public class CheckOut extends Evento {
 public CheckOut(ControladorCadastro controladorCadastro, BancoDeDados  bd) {
 		super(controladorCadastro, bd);
-		// TODO Auto-generated constructor stub
 	}
 	
 
 	@Override
 	public void executa() throws CadastroException {
-		// TODO Auto-generated method stub
 		
 	}
     

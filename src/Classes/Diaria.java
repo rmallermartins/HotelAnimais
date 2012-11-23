@@ -11,20 +11,20 @@ package Classes;
 public enum Diaria {
 	PEQUENO, MEDIO, GRANDE;
 	
-	public static double getValor(Porte porte){
-		switch(porte){
+	public double getValor(Diaria diaria){
+		switch(diaria){
 		case GRANDE:
-			return 100;
+			return 100d;
 		case MEDIO:
-			return 60;
+			return 60d;
 		case PEQUENO:
-			return 40;
+			return 40d;
 		}
 		return 0d;
 	}
 	
-	public static Diaria getDiaria(Porte porte){
-		switch (porte){
+	public Diaria getDiaria(Diaria diaria){
+		switch (diaria){
 		case GRANDE:
 			return GRANDE;
 		case MEDIO:

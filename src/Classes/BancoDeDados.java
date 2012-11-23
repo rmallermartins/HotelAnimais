@@ -37,6 +37,7 @@ public class BancoDeDados {
         acomodacoes.add(new Acomodacao(16, Especie.ROEDOR, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
         acomodacoes.add(new Acomodacao(17, Especie.ROEDOR, Porte.MEDIO, EstadoAcomodacao.DESOCUPADA));
         acomodacoes.add(new Acomodacao(18, Especie.ROEDOR, Porte.GRANDE, EstadoAcomodacao.DESOCUPADA));
+        acomodacoes.add(new Acomodacao(19, Especie.CACHORRO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADA));
         
         animais = new HashSet<Animal>(); 
         diarias = new HashSet<Diaria>(); 
