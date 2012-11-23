@@ -4,6 +4,7 @@
  */
 package Controle;
 
+import java.text.ParseException;
 import java.util.Set;
 
 import Classes.*;
@@ -14,27 +15,14 @@ import Classes.*;
  */
 public class ControladorCadastro {
     
-    public void cadastrar(Object entidade, BancoDeDados bd) throws CadastroException { 
-        if (entidade instanceof Acomodacao) { 
-            BancoDeDados.getInstance().getAcomodacoes().add((Acomodacao) entidade); 
-        } else if (entidade instanceof Animal) {
-            BancoDeDados.getInstance().getAnimais().add((Animal) entidade);
-        } else if (entidade instanceof Dono) { 
-            BancoDeDados.getInstance().getPessoas().add((Pessoa) entidade); 
-        } else if (entidade instanceof Estadia) { 
-            BancoDeDados.getInstance().getEstadias().add((Estadia) entidade); 
-        } else if (entidade instanceof PorteFaixa) { 
-            BancoDeDados.getInstance().getPortesFaixas().add((PorteFaixa) entidade); 
-    } 
- } 
-    public Porte classificarPorte(Animal animal) throws CadastroException { 
-        Set<PorteFaixa> porteFaixas = BancoDeDados.getInstance().getPortesFaixas(); 
+    public Porte classificarPorte(Animal animal, BancoDeDados bd) throws CadastroException { 
+        Set<PorteFaixa> porteFaixas = bd.getInstance().getPorteFaixas(); 
         for (PorteFaixa porteFaixa : porteFaixas) { 
         	if (porteFaixa.isAnimalDessePorte(animal)) { 
         		return porteFaixa.getPorte(); 
       } 
     } 
-    throw new CadastroException( "Não foi possível classificar o porte do animal."); 
-    } 
+    throw new CadastroException("Não foi possível classificar o porte do animal."); 
+    }
 
 }

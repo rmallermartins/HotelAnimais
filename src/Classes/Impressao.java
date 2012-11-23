@@ -5,14 +5,14 @@ import Controle.ControladorCadastro;
 
 public class Impressao extends Evento {
 
-	public Impressao(ControladorCadastro controladorCadastro) {
-		super(controladorCadastro);
-		// TODO Auto-generated constructor stub
+	public Impressao(ControladorCadastro controladorCadastro, BancoDeDados bd) {
+		super(controladorCadastro, bd);
+
 	}
 
 	@Override
 	public void executa() throws CadastroException {
-		// TODO Auto-generated method stub
+
 
 	}
 

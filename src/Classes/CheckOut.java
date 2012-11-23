@@ -12,8 +12,8 @@ import Controle.ControladorCadastro;
  * @author Raul San
  */
 public class CheckOut extends Evento {
-public CheckOut(ControladorCadastro controladorCadastro) {
-		super(controladorCadastro);
+public CheckOut(ControladorCadastro controladorCadastro, BancoDeDados  bd) {
+		super(controladorCadastro, bd);
 		// TODO Auto-generated constructor stub
 	}
 	

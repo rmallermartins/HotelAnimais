@@ -11,8 +11,8 @@ import java.util.Set;
 public class Consulta extends Evento{
     
 
-    public Consulta(ControladorCadastro controladorCadastro) {
-		super(controladorCadastro);
+    public Consulta(ControladorCadastro controladorCadastro, BancoDeDados bd) {
+		super(controladorCadastro, bd);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -67,7 +67,7 @@ public class Consulta extends Evento{
                 	
                 }
                 
-                Set<Animal> animais = BancoDeDados.getInstance().getAnimais();
+                Set<Animal> animais = getBd().getInstance().getAnimais();
                 for (Animal animal : animais) {
                 	
                 	
@@ -78,7 +78,7 @@ public class Consulta extends Evento{
     }
 
     public void executa() throws CadastroException{
-        BancoDeDados bd = HotelAnimal.getBd();
+        BancoDeDados bd = getBd();
         
         
 

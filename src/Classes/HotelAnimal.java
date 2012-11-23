@@ -15,15 +15,15 @@ public class HotelAnimal {
 	private static final int IMPRESSAO = 2;
 	private static final int CHECKOUT = 3;
 	private static final int CONSULTAR = 4;
+	private static final int SAIR = 0;
 	
 	public HotelAnimal(){
         this.controladorCadastro = new ControladorCadastro();
+        this.bd = new BancoDeDados();
     }
 	
-	public void executa() throws CadastroException, ParseException{
-		while (true) {	
+	public void executa() throws CadastroException, ParseException{	
 			realizaEvento();
-		}
 	}
 	
 	
@@ -34,20 +34,23 @@ public class HotelAnimal {
 		
 		while (!sair) {
 		
-		int opcao = mostraMenuPrincipal();
+			int opcao = mostraMenuPrincipal();
 		
-		switch(opcao){
-		case CHECKIN:
-		case IMPRESSAO:
-		case CHECKOUT:
-		case CONSULTAR:
-			eventoAtual = criaEvento(opcao);
-			eventoAtual.executa();
-			break;
-		default:
-			System.out.println("Opção Invalida, tente novamente.");
-		}
-		
+			switch(opcao){
+			case CHECKIN:
+			case IMPRESSAO:
+			case CHECKOUT:
+			case CONSULTAR:
+				eventoAtual = criaEvento(opcao);
+				eventoAtual.executa();
+				break;
+			case SAIR:
+				sair = true;
+				System.out.println("Fechando o Programa...");
+				break;
+			default:
+				System.out.println("Opção Invalida, tente novamente.");
+			}
 		}
 	}
 
@@ -56,45 +59,34 @@ public class HotelAnimal {
 		
 		switch(tipo){
 		case CHECKIN:
-			evento = new CheckIn(this.controladorCadastro);
+			evento = new CheckIn(this.controladorCadastro, this.bd);
 			break;
 		case IMPRESSAO:
-			evento = new Impressao(this.controladorCadastro);
+			evento = new Impressao(this.controladorCadastro, this.bd);
 			break;
 		case CHECKOUT:
-			evento = new CheckOut(this.controladorCadastro);
+			evento = new CheckOut(this.controladorCadastro, this.bd);
 			break;
 		case CONSULTAR:
-			evento = new Consulta(this.controladorCadastro);
+			evento = new Consulta(this.controladorCadastro, this.bd);
 			break;
 		}
 		return evento;
 	}
 	
 	
-	private static int mostraMenuPrincipal() {
+	private int mostraMenuPrincipal() {
 		
-		System.out.println("Menu Principal");
+		System.out.println("\nMenu Principal");
 		System.out.println("1 - Check-In");
 		System.out.println("2 - Impressões");
 		System.out.println("3 - Check-Out");
 		System.out.println("4 - Consultar Acomodações");
+		System.out.println("0 - Sair");
 		
 		Scanner entrada = new Scanner(System.in);
 		return entrada.nextInt();
 		
-	}
-
-	/**
-	 * @return the bd
-	 */
-	public static BancoDeDados getBd() {
-		return bd;
-	}
-	
-	public ControladorCadastro getControladorCadastro() {
-		return this.controladorCadastro;
-	}
-	
+	}	
 
 }

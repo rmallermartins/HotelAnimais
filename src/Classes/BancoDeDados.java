@@ -11,24 +11,87 @@ public class BancoDeDados {
     private Set<Pessoa> pessoas; 
     private Set<Especie> especies; 
     private Set<Estadia> estadias; 
-    private Set<PorteFaixa> portesFaixas; 
+    private Set<PorteFaixa> porteFaixas; 
     
     private static BancoDeDados instance; 
     
-    private BancoDeDados() { 
+    public BancoDeDados() { 
+    	
         acomodacoes = new HashSet<Acomodacao>(); 
+        acomodacoes.add(new Acomodacao(1, Especie.CACHORRO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(2, Especie.CACHORRO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(3, Especie.CACHORRO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(4, Especie.GATO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(5, Especie.GATO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(6, Especie.GATO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(7, Especie.PASSARO, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(8, Especie.PASSARO, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(9, Especie.PASSARO, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.PEIXE, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.REPTIL, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.PEQUENO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.MEDIO, EstadoAcomodacao.DESOCUPADO));
+        acomodacoes.add(new Acomodacao(10, Especie.ROEDOR, Porte.GRANDE, EstadoAcomodacao.DESOCUPADO));
+        
         animais = new HashSet<Animal>(); 
         diarias = new HashSet<Diaria>(); 
         pessoas = new HashSet<Pessoa>(); 
         especies = new HashSet<Especie>(); 
         estadias = new HashSet<Estadia>(); 
-        portesFaixas = new HashSet<PorteFaixa>(); 
+        
+        porteFaixas = new HashSet<PorteFaixa>(); 
+        porteFaixas.add(new PorteFaixa(0d, 20d, 0d, 30d, Especie.CACHORRO, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(21d, 40d, 31d, 60d, Especie.CACHORRO, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(41d, 60d, 61d, 80d, Especie.CACHORRO, Porte.GRANDE));
+		
+        porteFaixas.add(new PorteFaixa(0d, 20d, 0d, 30d, Especie.GATO, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(21d, 40d, 31d, 60d, Especie.GATO, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(41d, 60d, 61d, 80d, Especie.GATO, Porte.GRANDE));
+		
+        porteFaixas.add(new PorteFaixa(0d, 20d, 0d, 30d, Especie.PASSARO, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(21d, 40d, 31d, 60d, Especie.PASSARO, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(41d, 60d, 61d, 80d, Especie.PASSARO, Porte.GRANDE));
+		
+        porteFaixas.add(new PorteFaixa(0d, 20d, 0d, 30d, Especie.PEIXE, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(21d, 40d, 31d, 60d, Especie.PEIXE, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(41d, 60d, 61d, 80d, Especie.PEIXE, Porte.GRANDE));
+		
+        porteFaixas.add(new PorteFaixa(0d, 20d, 0d, 30d, Especie.REPTIL, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(21d, 40d, 31d, 60d, Especie.REPTIL, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(41d, 60d, 61d, 80d, Especie.REPTIL, Porte.GRANDE));
+		
+        porteFaixas.add(new PorteFaixa(0d, 5d, 0d, 7d, Especie.ROEDOR, Porte.PEQUENO));
+        porteFaixas.add(new PorteFaixa(6d, 12d, 8d, 15d, Especie.ROEDOR, Porte.MEDIO));
+        porteFaixas.add(new PorteFaixa(13d, 25d, 15d, 30d, Especie.ROEDOR, Porte.GRANDE));
  } 
- public static BancoDeDados getInstance() { 
+    
+public void cadastrar(Object entidade) {
+	if (entidade instanceof Acomodacao) {
+		acomodacoes.add((Acomodacao) entidade);
+	} else if (entidade instanceof Animal) {
+		animais.add((Animal) entidade);
+	} else if (entidade instanceof Diaria) {
+		diarias.add((Diaria) entidade);
+	} else if (entidade instanceof Pessoa) {
+		pessoas.add((Pessoa) entidade);
+	} else if (entidade instanceof Especie) {
+		especies.add((Especie) entidade);
+	} else if (entidade instanceof Estadia) {
+		estadias.add((Estadia) entidade);
+	} else if (entidade instanceof PorteFaixa) {
+		porteFaixas.add((PorteFaixa) entidade);
+	}
+}
+    
+ public BancoDeDados getInstance() { 
   if (instance == null) { 
    instance = new BancoDeDados(); 
     } 
-  return instance; 
+  return instance;
  } 
  public Set<Acomodacao> getAcomodacoes() { 
   return acomodacoes; 
@@ -36,7 +99,7 @@ public class BancoDeDados {
  public Set<Animal> getAnimais() { 
   return animais;     
 } 
-public Set<Diaria> getDiarias() { 
+ public Set<Diaria> getDiarias() { 
   return diarias; 
 } 
  public Set<Pessoa> getPessoas() { 
@@ -48,7 +111,7 @@ public Set<Diaria> getDiarias() {
  public Set<Estadia> getEstadias() { 
   return estadias; 
 } 
- public Set<PorteFaixa> getPortesFaixas() { 
-  return portesFaixas; 
+ public Set<PorteFaixa> getPorteFaixas() { 
+  return porteFaixas; 
  } 
 } 

@@ -11,13 +11,13 @@ package Classes;
 public class Acomodacao {
     private int numero;
     private Especie especie;
-    private static Porte dimensao;
+    private Porte dimensao;
     private EstadoAcomodacao estado;
     
     public Acomodacao(int numero, Especie especie, Porte dimensao, EstadoAcomodacao estado) {
         this.numero = numero;
         this.especie = especie;
-        Acomodacao.dimensao = dimensao;
+        this.dimensao = dimensao;
         this.estado = estado;
     }
 
@@ -52,7 +52,7 @@ public class Acomodacao {
 	/**
 	 * @return the dimensao
 	 */
-	public static Porte getDimensao() {
+	public Porte getDimensao() {
 		return dimensao;
 	}
 
@@ -60,7 +60,7 @@ public class Acomodacao {
 	 * @param dimensao the dimensao to set
 	 */
 	public void setDimensao(Porte dimensao) {
-		Acomodacao.dimensao = dimensao;
+		this.dimensao = dimensao;
 	}
 
 	/**
