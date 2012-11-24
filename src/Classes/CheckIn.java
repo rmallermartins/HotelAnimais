@@ -15,6 +15,7 @@ public class CheckIn extends Evento {
 	private Pessoa resp, dono;
 	private Acomodacao acomodacao;
 	private Porte porte = null;
+	private Diaria diaria;
 
 	private final static int CACHORRO = 1;
 	private final static int GATO = 2;
@@ -42,9 +43,12 @@ public class CheckIn extends Evento {
 		if (acomodacao != null) {
 			cadastraAnimal();
 			System.out.println("\nAcomodação " + acomodacao.getNumero() + " disponível para o animal.");
-			Diaria diaria = pegaDiaria();
+			diaria = pegaDiaria();
 			Estadia estadia = cadastraEstadia(diaria);
 			mudaEstadoOcupada();
+			System.out.println("CheckIn foi feito na acomodação: " + acomodacao.getNumero() + "." +
+					"\nO valor de diaria é: R$" + diaria.getValor(diaria.getDiaria(porte)) +
+					"\nO valor total da estadia é: R$" + estadia.getTaxa());
 		} else { 
 			System.out.println("Não há acomodações disponível para o animal.");
 		}
@@ -75,7 +79,7 @@ public class CheckIn extends Evento {
 		Estadia estadia = new Estadia(animal, acomodacao, dataEntrada, duracao, calculaTaxaHospedagem(diaria, dataEntradaNumero, duracao));
 		getBd().getInstance().getEstadias().add(estadia);
 
-		System.out.println("Estadia Criada.");
+		System.out.println("Estadia Criada, ");
 		return estadia;
 	}
 
@@ -125,7 +129,7 @@ public class CheckIn extends Evento {
 		return Taxa;
 	}
 
-	public Animal pegaInfoAnimal() {
+	public void pegaInfoAnimal() {
 		Scanner entrada = new Scanner(System.in);
 
 		// Pega Dados do Dono
@@ -188,7 +192,6 @@ public class CheckIn extends Evento {
 		System.out.print("\nComprimento do Animal: ");
 		Double comprimentoAnimal = entrada.nextDouble();
 		this.animal = new Animal(dono, nomeAnimal, especieAnimal,alturaAnimal, comprimentoAnimal, resp);
-		return animal;
 	}
 
 	public void cadastraAnimal() throws CadastroException {
@@ -198,7 +201,8 @@ public class CheckIn extends Evento {
 		System.out.println("Cadastrando Animal...");
 		
 		for (Animal animal : animais) {
-			if (animal.equals(this.animal)) {
+			if (animal.getDono().getNome() == this.animal.getDono().getNome()
+					&& animal.getNome() == this.animal.getNome()) {
 				animalJaCadastrado = true;
 				System.out.println("\nAchou Animal no BD");
 			}

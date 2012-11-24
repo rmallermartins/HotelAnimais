@@ -23,8 +23,8 @@ public enum Diaria {
 		return 0d;
 	}
 	
-	public Diaria getDiaria(Diaria diaria){
-		switch (diaria){
+	public Diaria getDiaria(Porte porte){
+		switch (porte){
 		case GRANDE:
 			return GRANDE;
 		case MEDIO:
