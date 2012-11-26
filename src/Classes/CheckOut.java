@@ -4,20 +4,15 @@ import Classes.BancoDeDados;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 import Controle.*;
 import Classes.Acomodacao;
 import Classes.Animal;
-import java.awt.image.DataBuffer;
-import java.text.DateFormat;
-import java.util.Calendar;
 
 public class CheckOut extends Evento {
 
 	private Animal animal = null;
-	private Pessoa resp, dono;
 	private Acomodacao acomodacao;
 	private Porte porte = null;
 	private Estadia estadia;
@@ -37,8 +32,6 @@ public class CheckOut extends Evento {
 	@Override
 	public void executa() throws CadastroException, ParseException {
 
-		BancoDeDados bd = getBd();
-
 		pegaInfoAnimal();
 		porte = getControladorCadastro().classificarPorte(animal, getBd());
 
@@ -50,7 +43,7 @@ public class CheckOut extends Evento {
 
 		if (estadia != null) {
 			
-			// Calcular Taxa, Raul vai fazer.
+			calculaTaxa(estadia.getDuracao());
 			
 			removerEstadia();
 			System.out.println("\nCheckOut do animal " + estadia.getAnimal().getNome() + " realizado.");
@@ -63,7 +56,7 @@ public class CheckOut extends Evento {
 		Set<Estadia> estadias = getBd().getInstance().getEstadias();		
 		
 		for (Estadia estadia : estadias) {
-			if (estadia.getAnimal() == this.animal){
+			if (estadia.getAnimal() == (this.animal)){
 				return estadia;
 			} else {
 				return null;
@@ -101,65 +94,42 @@ public class CheckOut extends Evento {
 	}
    
 
-	public double calculaTaxa(Acomodacao acomodacao, int dataEntrada,int duracao) throws ParseException {
+	public double calculaTaxa(int duracao) throws ParseException {
             
-            Date dataAgora = new Date();
-            long duracao2 = ((long)duracao) * 86400000;
-            long dt = dataEntrada.getTime() + duracao2; 
-            Date dataPrev = new Date(dt);
-            
-            if (dataPrev.compareTo(dataAgora)==0){
-                    double Taxa = duracao * diaria.getValor(diaria);
-                    System.out.println("O valor da Estadia é:%.2f ");
-                    return Taxa;
-                } else if (dataPrev.compareTo(dataAgora) <= 0) {
-                    //Caso o Dono Retire o Animal depois da data prevista
-                    long dataPass = dataAgora.getTime() - dataPrev.getTime();
-                    Date dataPassou = new Date(dataPass);
-                    long dataPassouDia = dataPassou.getTime()/86400000L;
-                    double Taxa = dataPassouDia * diaria.getValor(diaria.getDiaria(porte));
-                    System.out.println("O valor da Estadia é:  "+Taxa);
-                    return Taxa;
-                 } else{
-                    //Caso o Dono Retire o Animal antes da data prevista
-                    long dataMen = dataAgora.getTime() - dataPrev.getTime();
-                    Date dataMenor = new Date(dataMen);
-                    long dataMenorDia = dataMenor.getTime()/86400000L;
-                    double Taxa = duracao * Diaria.getValor(acomodacao.getDimensao());
-                    System.out.println("O valor da Estadia é:%.2f "+Taxa);
-                    return Taxa;
-                }
-}
-    
-            
-          /*          Integer dur = (Integer) duracao;
-                    Date dataDur = df2.parse(dur.toString());
-                    long dt = dataEntrada.getTime() + dataDur.getTime();
-                    Date dataPrev = new Date(dt);
-                    long dataLong = dataAgora.getTime() - dataDur.getTime(); 
-                    Date dataEsp = new Date(dataLong);
-                    if (dataEsp == dataAgora){
-                    double Taxa = duracao * Diaria.getValor(acomodacao.getDimensao());
-                    System.out.println("O valor da Estadia é:%.2f ");
-                    return Taxa;
-                } else if (dataEsp.compareTo(dataAgora) <= 0) {
-                    //Caso o Dono Retire o Animal antes da data prevista
-                    long dataPass = dataAgora.getTime() - dataEsp.getTime();
-                    Date dataPassou = new Date(dataPass);
-                    long dataPassouDia = dataPassou.getTime()/86400000L;
-                    double Taxa = dataPassouDia * Diaria.getValor(acomodacao.getDimensao());
-                    System.out.println("O valor da Estadia é:%.2f ");
-                    return Taxa;
-			} else () {
-                    //Caso o Dono Retire o Animal depois da data prevista
-                    double Taxa = duracao * Diaria.getValor(acomodacao.getDimensao());
-                    System.out.println("O valor da Estadia é:%.2f ");
-                    return Taxa;
-            
-        }
-        }
-        **/
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd");
+        Date dataAgora = new Date();
+        long duracao2 = ((long)duracao) * 86400000;
+        long DataEntradaNumero = Integer.parseInt(sdf2.format(estadia.getEntrada()));
+        long dt = DataEntradaNumero + duracao2; 
+        Date dataPrev = new Date(dt);
+        
+     
+        
+        if (dataPrev.compareTo(dataAgora)==0){
 
+                double Taxa = duracao * diaria.getValor(diaria.getDiaria(porte));
+                System.out.println("O valor da Estadia é:%.2f "+Taxa);
+                return Taxa;
+                
+            } else if (dataPrev.compareTo(dataAgora) <= 0) {
+                //Caso o Dono Retire o Animal depois da data prevista
+                long dataPass = dataAgora.getTime() - dataPrev.getTime();
+                Date dataPassou = new Date(dataPass);
+                long dataPassouDia = dataPassou.getTime()/86400000L;
+                long dataPrevistaDia = Integer.parseInt(sdf2.format(dataPrev));
+                double Taxa = ((dataPassouDia - dataPrevistaDia) * 1.1);
+                System.out.println("O valor da Estadia é:  "+Taxa);
+                return Taxa;
+             } else {
+                
+                //Caso o Dono Retire o Animal antes da data prevista
+                long dataEntradaDia = Integer.parseInt(sdf2.format(estadia.getEntrada()));
+                long dataAgoraDia = Integer.parseInt(sdf2.format(dataAgora));
+                double Taxa = ((dataAgoraDia - dataEntradaDia) * diaria.getValor(diaria.getDiaria(porte)));
+                System.out.println("O valor da Estadia é:%.2f "+Taxa);
+                return Taxa;
+            }
+}
      
 	public void pegaInfoAnimal() {
 		Scanner entrada = new Scanner(System.in);
@@ -169,22 +139,22 @@ public class CheckOut extends Evento {
 		while (!achou) {
 			System.out.print("\nNome do Animal: ");
 			String nomeAnimal = entrada.next();
-		
-			System.out.println("\nEspecie do animal?");
-			System.out.println("1 - Cachorro");
-			System.out.println("2 - Gato");
-			System.out.println("3 - Passaro");
-			System.out.println("4 - Peixe");
-			System.out.println("5 - Reptil");
-			System.out.println("6 - Roedor");
-			System.out.print("Especie: ");
-		
-			int especie = entrada.nextInt();
 			Especie especieAnimal = null;
 
 			boolean especieCerta = false;
 			
 			while (!especieCerta) {
+				System.out.println("\nEspecie do animal?");
+				System.out.println("1 - Cachorro");
+				System.out.println("2 - Gato");
+				System.out.println("3 - Passaro");
+				System.out.println("4 - Peixe");
+				System.out.println("5 - Reptil");
+				System.out.println("6 - Roedor");
+				System.out.print("Especie: ");
+		
+				int especie = entrada.nextInt();
+			
 				switch (especie) {
 				case CACHORRO:
 					especieAnimal = Especie.CACHORRO;
@@ -221,8 +191,9 @@ public class CheckOut extends Evento {
 		
 		System.out.print("\nComprimento do Animal: ");
 		Double comprimentoAnimal = entrada.nextDouble();
+		Set<Animal> animais = getBd().getInstance().getAnimais();
 		
-			for (Animal an: getBd().getInstance().getAnimais()){
+			for (Animal an: animais){
 				if (an.getNome() == nomeAnimal
 						&& an.getEspecie() == especieAnimal
 						&& an.getAltura() == alturaAnimal
@@ -241,24 +212,10 @@ public class CheckOut extends Evento {
 		Set<Estadia> estadias = getBd().getInstance().getEstadias();
 			for (Estadia estadia : estadias) {
 				if (this.estadia == estadia) {
-					getBd().getInstance().getEstadias().remove(estadia));                               
+					getBd().getInstance().getEstadias().remove(estadia);                               
 					break;
-		}
+		        } 
+			}	
 	}
         
-        public void alterarAcomodacao() throws CadastroException {
-                Set<Acomodacao> acomodacoes = getBd().getInstance().getAcomodacoes();
-                
-		for (Acomodacao acomodacao : acomodacoes) {
-		if (this.acomodacao == getAcomodacoes()
-                    acomodacao.getEstado() == EstadoAcomodacao.DESOCUPADA
-                    acomodacao.getEspecie() == animal.getEspecie()) {
-                        System.out.println("Check Out Realizado Com Sucesso!.");
-                        break;
-                }else{
-        
-		return ;
-    		}
-    	}
-        }
 }

@@ -149,49 +149,58 @@ public class CheckIn extends Evento {
 		// Pegar Dados do Animal
 		System.out.print("\nNome do Animal: ");
 		String nomeAnimal = entrada.next();
-		
-		System.out.println("\nEspecie do animal?");
-		System.out.println("1 - Cachorro");
-		System.out.println("2 - Gato");
-		System.out.println("3 - Passaro");
-		System.out.println("4 - Peixe");
-		System.out.println("5 - Reptil");
-		System.out.println("6 - Roedor");
-		System.out.print("Especie: ");
-		
-		int especie = entrada.nextInt();
+		boolean achou = false;
 		Especie especieAnimal = null;
-
-		switch (especie) {
-		case CACHORRO:
-			especieAnimal = Especie.CACHORRO;
+		
+		while (!achou){
+			System.out.println("\nEspecie do animal?");
+			System.out.println("1 - Cachorro");
+			System.out.println("2 - Gato");
+			System.out.println("3 - Passaro");
+			System.out.println("4 - Peixe");
+			System.out.println("5 - Reptil");
+			System.out.println("6 - Roedor");
+			System.out.print("Especie: ");
+		
+			int especie = entrada.nextInt();
+		
+			switch (especie) {
+			case CACHORRO:
+				especieAnimal = Especie.CACHORRO;
+				achou = true;
+				break;
+			case GATO:
+				especieAnimal = Especie.GATO;
+				achou = true;
+				break;
+			case PASSARO:
+				especieAnimal = Especie.PASSARO;
+				achou = true;
+				break;
+			case PEIXE:
+				especieAnimal = Especie.PEIXE;
+				achou = true;
+				break;
+			case REPTIL:
+				especieAnimal = Especie.REPTIL;
+				achou = true;
+				break;
+			case ROEDOR:
+				especieAnimal = Especie.ROEDOR;
+				achou = true;
+				break;
+			default:
+				System.out.println("\nOpção inválida. Escolha a especie novamente.");
 			break;
-		case GATO:
-			especieAnimal = Especie.GATO;
-			break;
-		case PASSARO:
-			especieAnimal = Especie.PASSARO;
-			break;
-		case PEIXE:
-			especieAnimal = Especie.PEIXE;
-			break;
-		case REPTIL:
-			especieAnimal = Especie.REPTIL;
-			break;
-		case ROEDOR:
-			especieAnimal = Especie.ROEDOR;
-			break;
-		default:
-			System.out.println("\nOpção inválida. Cadastre o Animal Novamente.");
-			break;
+			}
 		}
-
+		
 		System.out.print("\nAltura do Animal: ");
 		Double alturaAnimal = entrada.nextDouble();
 
 		System.out.print("\nComprimento do Animal: ");
 		Double comprimentoAnimal = entrada.nextDouble();
-		this.animal = new Animal(dono, nomeAnimal, especieAnimal,alturaAnimal, comprimentoAnimal, resp);
+		this.animal = new Animal(dono, nomeAnimal, especieAnimal ,alturaAnimal, comprimentoAnimal, resp);
 	}
 
 	public void cadastraAnimal() throws CadastroException {
@@ -201,10 +210,11 @@ public class CheckIn extends Evento {
 		System.out.println("Cadastrando Animal...");
 		
 		for (Animal animal : animais) {
-			if (animal.getDono().getNome() == this.animal.getDono().getNome()
-					&& animal.getNome() == this.animal.getNome()) {
+			if (animal == this.animal) {
+				
 				animalJaCadastrado = true;
 				System.out.println("\nAchou Animal no BD");
+				break;
 			}
 		}
 		

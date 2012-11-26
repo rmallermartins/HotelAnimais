@@ -41,7 +41,7 @@ public class BancoDeDados {
         
         animais = new HashSet<Animal>(); 
         diarias = new HashSet<Diaria>(); 
-        pessoas = new HashSet<Pessoa>(); 
+        pessoas = new HashSet<Pessoa>();   
         portes = new HashSet<Porte>();
         especies = new HashSet<Especie>(); 
         estadias = new HashSet<Estadia>(); 
